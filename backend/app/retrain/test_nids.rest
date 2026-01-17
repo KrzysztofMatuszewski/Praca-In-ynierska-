@@ -1,0 +1,62 @@
+POST http://172.19.20.25:8009/train/nids
+Content-Type: application/json
+
+{
+  "normal_filters": [
+    {
+      "id": "1",
+      "source": {
+        "ip": "172.19.20.29",
+        "port": {
+          "from": 0,
+          "to": 65535
+        }
+      },
+      "destination": {
+        "ip": "172.19.20.25",
+        "port": {
+          "from": 5000,
+          "to": 5000
+        }
+      }
+    }
+  ]
+}
+
+###
+
+GET http://172.19.20.25:8009/check_anomalies HTTP/1.1
+Content-Type: application/json
+
+{
+  "event_source": "hids",
+  "data": {
+    "agent": {
+                "id": "9"
+            },
+    "rule": {
+        "description":"description"
+    }
+
+  }
+}
+
+###
+
+GET http://172.19.20.25:8009/check_anomalies HTTP/1.1
+Content-Type: application/json
+
+{
+  "event_source": "nids",
+  "data": {
+    "source": {
+                "ip": "9",
+                "port": "5000"
+            },
+    "destination": {
+                "ip": "9",
+                "port": "5000"
+            }
+
+  }
+}

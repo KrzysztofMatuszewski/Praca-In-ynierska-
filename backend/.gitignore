@@ -1,0 +1,41 @@
+# Python virtual environment
+/lib
+/share
+/lib64
+/include
+/bin
+/etc
+/pyvenv.cfg
+/src
+
+# Node modules
+/node_modules
+/package-lock.json
+
+# Temporary files
+/tmp
+*.tar.gz
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data files (ignore content but keep structure)
+/app/data/hids/*
+!/app/data/hids/.gitkeep
+/app/data/nids/*
+!/app/data/nids/.gitkeep
+/app/data/models/*
+!/app/data/models/.gitkeep
+
+# Environment variables (keep example)
+.env
+!.env.example
+
+# SSL certificates
+*.crt
+*.key
+*.pem

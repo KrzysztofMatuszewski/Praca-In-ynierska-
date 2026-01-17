@@ -1,0 +1,13 @@
+POST http://172.19.20.25:8009/train/hids
+Content-Type: application/json
+
+{
+    "normal_filters": [
+        {
+            "id": "whatever",
+            "agent": {
+                "id": "*"
+            }
+        }
+    ]
+}

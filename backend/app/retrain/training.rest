@@ -1,0 +1,30 @@
+POST http://172.19.20.25:8009/training
+Content-Type: application/json
+
+{
+    "source": "hids",
+    "batch_size": 50,
+    "columns_to_use": ["agent.id","rule.description"],
+    "relative_from": "2025-02-23T00:59",
+    "relative_to": "2025-02-24T01:00",
+    "epochs": 50,
+    "max_size": 10000
+}
+
+
+
+###
+GET http://172.19.20.25:8009/training/list
+Content-Type: application/json
+
+
+###
+GET http://172.19.20.25:8009/training/data
+Content-Type: application/json
+
+{
+    "source": "hids",
+    "folder_name": "2025-01-24 11:10"
+}
+
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Process</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+</head>
+<body>
+    <h1>Learning Process</h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Learning Process</a></li>
+            <li><a href="{{ url_for('testing') }}">Testing Process</a></li>
+        </ul>
+    </nav>
+
+    <h1>Configure Training</h1>
+    <form method="POST" action="{{ url_for('save_settings') }}">
+        <label for="columns">COLUMNS_TO_USE (Comma-separated values):</label><br>
+        <input type="text" id="columns" name="columns" placeholder="Enter column names, separated by commas" required><br><br>
+
+        <label for="relative_from">RELATIVE_FROM:</label><br>
+        <input type="datetime-local" id="relative_from" name="relative_from" required><br><br>
+
+        <label for="relative_to">RELATIVE_TO:</label><br>
+        <input type="datetime-local" id="relative_to" name="relative_to" required><br><br>
+
+        <label for="epochs">Epochs:</label><br>
+        <input type="number" id="epochs" name="epochs" min="1" required><br><br>
+
+        <label for="batch_size">Batch Size:</label><br>
+        <input type="number" id="batch_size" name="batch_size" min="1" required><br><br>
+
+        <button type="submit">Save Settings</button>
+    </form>
+
+    <!-- Existing Canvas and Charts -->
+    <h1>Anomaly detection summary</h1>
+    <canvas id="anomalyDetectionSummary" width="500" height="500"></canvas>
+    <h1>Model Performance</h1>
+    <canvas id="lineChart" width="900" height="400"></canvas>    
+    <h1>Model accuracy</h1>
+    <canvas id="accuracyGraph" width="900" height="400"></canvas>
+    <h1>Model loss</h1>
+    <canvas id="lossGraph" width="900" height="400"></canvas>
+    <h1>Feature importance</h1>
+    <canvas id="featureImportanceChart" width="900" height="400"></canvas>
+    <h1>Feature distributions</h1>
+    <div id="chartsContainer"></div>
+
+    <script>
+        const anomalies = {{ anomalies | safe }};
+        const labels = {{ labels | safe }};
+        const values = {{ values | safe }};
+        const mse = {{ mse | safe }};
+        const feature = {{ feature | safe }};
+        const importance = {{ importance | safe }};
+        const filtered_headers = {{ filtered_headers | safe }};
+        const column_arrays = {{ column_arrays | safe }};
+        const anomaly_array = {{ anomaly_array | safe }};
+        const loss = {{ loss | safe }};
+        const val_loss = {{ val_loss | safe }};
+        const accuracy = {{ accuracy | safe }};
+        const val_accuracy = {{ val_accuracy | safe }};
+    </script>
+    <script src="{{ url_for('static', path='/js/script_graphs.js') }}"></script>
+</body>
+</html>

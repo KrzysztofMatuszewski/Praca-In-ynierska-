@@ -1,0 +1,13 @@
+fastapi[standard]==0.113.0
+pydantic==2.8.2
+requests==2.32.3
+pybind11
+uvicorn
+jupyter
+numpy
+scikit-learn
+tensorflow
+pandas
+redis
+opensearch-py
+python-dotenv

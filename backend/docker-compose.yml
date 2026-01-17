@@ -1,0 +1,43 @@
+services:
+  ad-queue:
+    image: redis:alpine
+    container_name: ad_queue
+    restart: always
+    network_mode: host
+    environment:
+      REDIS_PWD: '${REDIS_PWD}'
+    command: /bin/sh -c "redis-server --requirepass $REDIS_PWD"
+    volumes:
+      - ad_data:/data
+
+  # anomalies_detection:
+    # image: anomalies_detection:1.0.0-dev
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # container_name: anomalies_detection
+    # restart: unless-stopped
+    # network_mode: host
+    # environment:
+    #   COLUMNS_TO_USE: source.ip,source.port,destination.port,destination.ip
+    #   COLUMNS_TO_USE_HIDS: agent.id,rule.description
+    #   TEST_SET_SIZE: 1000
+    #   EPOCHS: 50
+    #   BATCH_SIZE: 8
+    #   RELATIVE_FROM: now-5d/d
+    #   RELATIVE_TO: now
+    #   HIDS_USER: admin
+    #   HIDS_PASSWORD: SecretPassword
+    #   HIDS_HOST: 172.19.20.29
+    #   HIDS_PORT: 10200
+    #   HIDS_INDEX: wazuh-alerts-*
+    #   NIDS_USER: admin
+    #   NIDS_PASSWORD: admin
+    #   NIDS_HOST: 172.19.20.29
+    #   NIDS_PORT: 9200
+    #   NIDS_INDEX: arkime_sessions3-*
+    # ports:
+    #   - 8009:8009
+
+volumes:
+  ad_data:

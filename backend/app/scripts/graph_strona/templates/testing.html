@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Process</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+<body>
+    <h1>Testing Process</h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Learning Process</a></li>
+            <li><a href="{{ url_for('testing') }}">Testing Process</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Select Date and Time Range</h2>
+        <form action="/testing" method="get">
+            <div class="date-picker-container">
+                <div class="date-picker-group">
+                    <label for="start_date">Start Date and Time</label>
+                    <input type="datetime-local" class="form-control" id="start_date" name="start_date" placeholder="Select start date and time">
+                </div>
+                <div class="date-picker-group">
+                    <label for="end_date">End Date and Time</label>
+                    <input type="datetime-local" class="form-control" id="end_date" name="end_date" placeholder="Select end date and time">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Function to get current date and time in the format YYYY-MM-DDTHH:MM
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+    
+        // Set the max attribute to today’s date and time
+        const today = getCurrentDateTime();
+        document.getElementById('start_date').setAttribute('max', today);
+        document.getElementById('end_date').setAttribute('max', today);
+    </script>
+
+
+    
+
+    <h1>Anomaly detection summary</h1>
+    <canvas id="anomalyDetectionSummary" width="500" height="500"></canvas>
+    <h1>Model Performance</h1>
+    <canvas id="lineChart" width="900" height="400"></canvas>    
+    <h1>Feature importance</h1>
+    <canvas id="featureImportanceChart" width="900" height="400"></canvas>
+    <h1>Feature distributions</h1>
+    <div id="chartsContainer"></div>
+    <script>
+        const anomalies = {{ anomalies | safe }};
+        const labels = {{ labels | safe }};
+        const values = {{ values | safe }};
+        const mse = {{ mse | safe }};
+        const feature = {{ feature | safe }};
+        const importance = {{ importance | safe }};
+        const filtered_headers = {{ filtered_headers | safe }};
+        const column_arrays = {{ column_arrays | safe }};
+        const anomaly_array_as_strings = {{ anomaly_array_as_strings | safe }};
+    </script>
+    <script src="{{ url_for('static', path='/js/script_graphs_testing.js') }}"></script>
+</body>
+</html>
