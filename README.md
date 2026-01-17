@@ -89,6 +89,13 @@ Przykładowa konfiguracja znajduje się w `.env.example`.
 
 Frontend domyślnie łączy się z backendem na `http://localhost:8012`.
 
+### Baza danych OpeanSearch
+
+Na potrzeby testu oprogramowania należy podłączyć swój własny OpeanSearch oraz załadować bądź zebrać dane.
+
+Przykłądowy zbiór testowy:
+https://www.kaggle.com/datasets/chethuhn/network-intrusion-dataset
+
 ## Wymagania
 
 - Python 3.11+
