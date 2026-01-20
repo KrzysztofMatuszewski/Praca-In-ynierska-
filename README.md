@@ -102,6 +102,3 @@ https://www.kaggle.com/datasets/chethuhn/network-intrusion-dataset
 - Node.js 18+
 - OpenSearch/ElasticSearch z danymi NIDS/HIDS
 
-## Licencja
-
-MIT
